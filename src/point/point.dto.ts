@@ -1,6 +1,6 @@
 import { IsInt } from 'class-validator';
 
-export class PointBody {
+export class PointDto {
   @IsInt()
   amount: number;
 }
