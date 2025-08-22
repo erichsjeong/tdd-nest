@@ -3,6 +3,7 @@ import { UserPointTable } from '../database/userpoint.table';
 import { PointHistoryTable } from '../database/pointhistory.table';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PointHistory, TransactionType, UserPoint } from './point.model';
+import { BadRequestException } from '@nestjs/common';
 
 describe('PointService', () => {
   let pointService: PointService;
@@ -140,4 +141,25 @@ describe('PointService', () => {
   });
 
   // 포인트 사용 실패
+  describe('use', () => {
+    it('should throw error', async () => {
+      // Given
+      const userId = 1;
+      const currentPoint = 500;
+      const useAmount = 1000;
+
+      const currentUserPoint: UserPoint = {
+        id: userId,
+        point: currentPoint,
+        updateMillis: Date.now(),
+      };
+      userPointTable.selectById.mockResolvedValue(currentUserPoint);
+      userPointTable.insertOrUpdate.mockResolvedValue(currentUserPoint);
+
+      // Then
+      await expect(pointService.use(userId, useAmount)).rejects.toThrow(
+        BadRequestException,
+      );
+    });
+  });
 });
