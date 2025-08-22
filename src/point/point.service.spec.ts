@@ -35,7 +35,7 @@ describe('PointService', () => {
   });
 
   // 포인트 조회
-  describe('point', () => {
+  describe('get user point', () => {
     it('should return point', async () => {
       // Given
       const userId = 1;
@@ -54,8 +54,8 @@ describe('PointService', () => {
     });
   });
 
-  // 포인트 충전/이용 내역 조회
-  describe('history', () => {
+  // 포인트 충전/사용 내역 조회
+  describe('get point history', () => {
     it('should return history', async () => {
       // Given
       const userId = 1;
@@ -80,8 +80,8 @@ describe('PointService', () => {
     });
   });
 
-  // 포인트 충전
-  describe('charge', () => {
+  // 포인트 충전 시 정상적으로 유저의 포인트가 증가하는지 확인
+  describe('charge point', () => {
     it('should return point', async () => {
       // Given
       const userId = 1;
@@ -110,8 +110,8 @@ describe('PointService', () => {
     });
   });
 
-  // 포인트 사용 성공
-  describe('use', () => {
+  // 포인트 사용 시 정상적으로 유저의 포인트가 감소하는지 확인
+  describe('use point', () => {
     it('should return point', async () => {
       // Given
       const userId = 1;
@@ -140,8 +140,8 @@ describe('PointService', () => {
     });
   });
 
-  // 포인트 사용 실패
-  describe('use', () => {
+  // 포인트 사용 시 포인트가 부족하면 예외 발생
+  describe('use point with not enough point', () => {
     it('should throw error', async () => {
       // Given
       const userId = 1;
